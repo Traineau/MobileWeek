@@ -1,7 +1,8 @@
-package com.example.mobileweek
+package com.example.mobileweek.controller
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mobileweek.R
 
 class MainActivity : AppCompatActivity() {
 
