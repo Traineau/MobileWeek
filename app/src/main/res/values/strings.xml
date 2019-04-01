@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MobileWeek</string>
+
+    <string name="title_activity_play">Page jouer</string>
+    <string name="title_activity_main">Page d\'accueil</string>
+    <string name="title_activity_profil">Page profil</string>
+    <string name="title_activity_parameters">Page parametres</string>
+
+    <string name="bottom_navigation_menu_home">Accueil</string>
+    <string name="bottom_navigation_menu_play">Jouer</string>
+    <string name="bottom_navigation_menu_profil">Profil</string>
+    <string name="bottom_navigation_menu_parameters">Options</string>
 </resources>
