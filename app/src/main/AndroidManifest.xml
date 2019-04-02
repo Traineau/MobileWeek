@@ -15,7 +15,7 @@
                 android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".controller.MainActivity">
+        <activity android:name=".controller.MainActivity" android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -23,17 +23,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.PlayFragment">
+        <activity android:name=".controller.ScanActivity"
+            android:parentActivityName="controller.MainActivity" android:label="@string/title_activity_scan">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".controller.MainActivity"/>
         </activity>
 
-
-        <activity android:name=".controller.ParametersFragment">
-        </activity>
-
-        <activity android:name=".controller.ProfilFragment">
-        </activity>
-
-        <activity android:name=".controller.ScanActivity">
+        <activity android:name=".controller.GameActivity"
+                  android:parentActivityName="controller.ScanActivity" android:label="@string/title_activity_game">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".controller.ScanActivity"/>
         </activity>
 
 

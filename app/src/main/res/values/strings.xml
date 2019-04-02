@@ -4,8 +4,8 @@
     <string name="title_activity_play">Page jouer</string>
     <string name="title_activity_main">Page d\'accueil</string>
     <string name="title_activity_profil">Page profil</string>
-    <string name="title_activity_parameters">Page parametres</string>
     <string name="title_activity_scan">Page scan</string>
+    <string name="title_activity_game">Place moi sur la carte!</string>
 
     <string name="bottom_navigation_menu_home">Accueil</string>
     <string name="bottom_navigation_menu_play">Jouer</string>
