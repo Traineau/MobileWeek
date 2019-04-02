@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mobileweek.R
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.widget.Button
 
@@ -21,22 +22,30 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var scanButton: Button? = null
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val OnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                goToHome()
+                toolbar.title = "Accueil"
+                val homeFragment = HomeFragment.newInstance()
+                openFragment(homeFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_play -> {
-                goToPlay()
+                toolbar.title = "Jouer"
+                val playFragment = PlayFragment.newInstance()
+                openFragment(playFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profil -> {
-                goToProfil()
+                toolbar.title = "Profil"
+                val profilFragment = ProfilFragment.newInstance()
+                openFragment(profilFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_parameters -> {
-                goToParameters()
+                toolbar.title = "Parametres"
+                val parametersFragment = ParametersFragment.newInstance()
+                openFragment(parametersFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -50,14 +59,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         toolbar = supportActionBar!!
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-        scanButton = findViewById(R.id.scanButton) as Button
-
-        scanButton!!.setOnClickListener {
-            val intent = Intent(this@MainActivity, ScanActivity::class.java)
-            startActivity(intent)
-        }
+        bottomNavigation.setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -74,22 +76,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
-    private fun goToHome(){
-
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
-    private fun goToPlay(){
-        val intent = Intent(this, PlayActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun goToParameters(){
-        val intent = Intent(this, ParametersActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun goToProfil(){
-        val intent = Intent(this, ProfilActivity::class.java)
-        startActivity(intent)
-    }
 }
