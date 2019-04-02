@@ -4,7 +4,8 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".controller.GameActivity">
+                                             tools:context=".controller.GameActivity"
+                                             android:id="@+id/constraintLayout">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -13,7 +14,7 @@
               android:name="com.google.android.gms.maps.SupportMapFragment"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              tools:context=".MapsActivity" />
+              tools:context=".MapsActivity"/>
     <Button
             android:text="VALIDER"
             android:layout_width="0dp"
@@ -25,5 +26,40 @@
             android:gravity="right|center_vertical"
             android:background="@color/colorPrimary" android:textColor="@color/aliceBlue"
             android:lineSpacingExtra="10sp"/>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="296dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/aliceBlueTransparent">
+
+        <TextView
+                android:text="Couscous 400g"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/productName"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:textStyle="bold"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+                android:text="Picard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/productCompany"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:textStyle="bold"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productName"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
