@@ -10,7 +10,7 @@ import com.example.mobileweek.R
 class ProfilFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_play, container, false)
+        inflater.inflate(R.layout.fragment_profil, container, false)
 
     companion object {
         fun newInstance(): ProfilFragment = ProfilFragment()

@@ -1,13 +1,11 @@
 package com.example.mobileweek.controller
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mobileweek.R
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
-import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,12 +29,6 @@ class MainActivity : AppCompatActivity() {
                 toolbar.title = "Profil"
                 val profilFragment = ProfilFragment.newInstance()
                 openFragment(profilFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_parameters -> {
-                toolbar.title = "Parametres"
-                val parametersFragment = ParametersFragment.newInstance()
-                openFragment(parametersFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
