@@ -35,7 +35,7 @@ class ParametersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_parameters)
 
         toolbar = supportActionBar!!
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
