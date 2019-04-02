@@ -49,17 +49,17 @@ class ScanActivity : AppCompatActivity() {
     }
 
     private fun goToPlay(){
-        val intent = Intent(this, PlayActivity::class.java)
+        val intent = Intent(this, PlayFragment::class.java)
         startActivity(intent)
     }
 
     private fun goToParameters(){
-        val intent = Intent(this, ParametersActivity::class.java)
+        val intent = Intent(this, ParametersFragment::class.java)
         startActivity(intent)
     }
 
     private fun goToProfil(){
-        val intent = Intent(this, ProfilActivity::class.java)
+        val intent = Intent(this, ProfilFragment::class.java)
         startActivity(intent)
     }
 }

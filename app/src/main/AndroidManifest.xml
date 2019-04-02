@@ -23,14 +23,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".controller.PlayActivity">
+        <activity android:name=".controller.PlayFragment">
         </activity>
 
 
-        <activity android:name=".controller.ParametersActivity">
+        <activity android:name=".controller.ParametersFragment">
         </activity>
 
-        <activity android:name=".controller.ProfilActivity">
+        <activity android:name=".controller.ProfilFragment">
         </activity>
 
         <activity android:name=".controller.ScanActivity">
