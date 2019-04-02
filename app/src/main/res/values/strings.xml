@@ -11,4 +11,9 @@
     <string name="bottom_navigation_menu_play">Jouer</string>
     <string name="bottom_navigation_menu_profil">Profil</string>
     <string name="bottom_navigation_menu_parameters">Options</string>
+
+    <string name="dialog_message">Votre progression ne sera pas sauvegardé</string>
+    <string name="dialog_title">Êtes-vous sûr de vouloir quitter la partie?</string>
+    <string name="quit_dialog_ok">QUITTER</string>
+    <string name="quit_dialog_cancel">ANNULER</string>
 </resources>

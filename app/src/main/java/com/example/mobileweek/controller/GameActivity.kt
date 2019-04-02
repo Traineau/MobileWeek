@@ -1,7 +1,9 @@
 package com.example.mobileweek.controller
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.example.mobileweek.R
 
@@ -12,7 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class GameActivity : AppCompatActivity(), OnMapReadyCallback {
+class GameActivity : AppCompatActivity(), OnMapReadyCallback{
 
     private lateinit var mMap: GoogleMap
 
@@ -26,7 +28,9 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        // Show BackArrow in Tab Bar
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -39,7 +43,28 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+
+        // Creating AlertDialog to prevent from quiting
+
+        val alertDialog: AlertDialog? = this.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setPositiveButton(R.string.quit_dialog_ok,
+                    DialogInterface.OnClickListener { dialog, id ->
+                        // Returning to scan page
+                        onBackPressed()
+                    })
+                setNegativeButton(R.string.quit_dialog_cancel,
+                    DialogInterface.OnClickListener { dialog, id ->
+                        // User cancelled the dialog
+                    })
+            }
+
+            builder.setMessage(R.string.dialog_message)?.setTitle(R.string.dialog_title)
+            builder.create()
+            builder.show()
+        }
+
         return true
     }
 
