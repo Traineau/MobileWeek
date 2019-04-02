@@ -24,31 +24,21 @@
         </activity>
 
         <activity android:name=".controller.PlayActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.PLAY"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
 
         <activity android:name=".controller.ParametersActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.PARAMETERS"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <activity android:name=".controller.ProfilActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.PROFIL"/>
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+        <activity android:name=".controller.ScanActivity">
         </activity>
 
 
     </application>
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
