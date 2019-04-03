@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation.setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener)
 
+        val homeFragment = HomeFragment.newInstance()
+        openFragment(homeFragment)
     }
 
     private fun openFragment(fragment: Fragment) {
