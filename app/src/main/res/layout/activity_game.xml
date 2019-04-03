@@ -14,7 +14,7 @@
               android:name="com.google.android.gms.maps.SupportMapFragment"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              tools:context=".MapsActivity"/>
+              tools:context=".MapsActivity" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="0dp"/>
     <Button
             android:text="VALIDER"
             android:layout_width="0dp"
@@ -38,25 +38,26 @@
                 android:text="Couscous 400g"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/productName"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/productImage"
                 android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp" android:textStyle="bold"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/productBrand" app:layout_constraintHorizontal_bias="0.5"/>
         <TextView
                 android:text="Picard"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/productCompany"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                android:layout_height="wrap_content" android:id="@+id/productBrand"
+                app:layout_constraintStart_toEndOf="@+id/productImage"
                 android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp" android:textStyle="bold"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productName"/>
+                app:layout_constraintTop_toBottomOf="@+id/productName" app:layout_constraintHorizontal_bias="0.5"/>
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
-                android:id="@+id/imageView"
+                android:id="@+id/productImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
