@@ -1,7 +1,7 @@
 package com.example.mobileweek.controller
 
 import android.content.DialogInterface
-import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -12,25 +12,31 @@ import com.example.mobileweek.model.Product
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 import android.os.Looper
 import android.os.Handler
 import android.widget.ImageView
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.squareup.picasso.Picasso
+import android.location.Geocoder
+import android.util.Log
+import com.google.android.gms.maps.model.*
+import java.util.*
+import kotlinx.android.synthetic.main.activity_game.*
+import kotlin.collections.ArrayList
 
 
 class GameActivity : AppCompatActivity(), OnMapReadyCallback{
 
     private lateinit var mMap: GoogleMap
+    val product = Product()
+    val myMarkers: MutableList<Marker> = mutableListOf<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -41,7 +47,6 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
 
         // TODO : Put code we got from scanning
-        val product = Product()
         val client = OkHttpClient()
 
         val productName: TextView = findViewById(R.id.productName) as TextView
@@ -54,22 +59,32 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
             .url("https://fr.openfoodfacts.org/api/v0/produit/${product.code}.json")
             .build()
 
+        // API call to get the product informations
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException) {}
             override fun onResponse(call: Call?, response: Response){
                 val jsonData = response.body()?.string()
                 val Jobject = JSONObject(jsonData)
 
+                // Settings the product variables
                 product.name = Jobject.getJSONObject("product")?.getString("product_name")
                 product.imageUrl = Jobject.getJSONObject("product")?.getString("image_front_url")
                 product.brand = Jobject.getJSONObject("product")?.getJSONArray("brands_tags")?.getString(0)
-                product.packerCode = Jobject.getJSONObject("product")?.getJSONArray("emb_code_tags")?.getInt(0)
+                product.packerCode = Jobject.getJSONObject("product")?.getString("emb_codes_tags")
                 product.packerCity = Jobject.getJSONObject("product")?.getJSONArray("cities_tags")?.getString(0)
 
+                // Getting the product's city information with geocode
+                val adressInfo = getGeocodeInfo(product.packerCity)
+
+                product.lat = adressInfo[0].latitude
+                product.long = adressInfo[0].longitude
+
+                // Updating the view
                 Handler(Looper.getMainLooper()).post(Runnable {
                     productName.text = product.name
                     brandName.text = product.brand
 
+                    // Using picasso to change the product image
                     Picasso.get()
                         .load(product.imageUrl)
                         .into(productImage);
@@ -77,19 +92,75 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
 
             }
         })
+
+    }
+
+    // When the user click on validate
+    protected fun handleValidateResponse(map: GoogleMap){
+        // Addin response marker
+        val newMarkerCoordinate = LatLng(product.lat as Double, product.long as Double)
+
+        val newMarker = map.addMarker(
+            MarkerOptions()
+                .position(newMarkerCoordinate)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+        // Putting marker in the list
+        myMarkers.add(1, newMarker)
+
+        // Creating a new LatLngBounds with both markers to center the view
+        val newPosition = LatLngBounds.builder().include(myMarkers[0].position).include(myMarkers[1].position).build()
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(newPosition, 20))
+
+        // Adding a red path between the two markers
+        mMap.addPolyline(PolylineOptions()
+            .add( myMarkers[0].position, myMarkers[1].position)
+            .width(5F)
+            .color(Color.RED))
+
+        // Calculating the km between the two markers
+    }
+
+    protected fun getGeocodeInfo(adress: String?): List<android.location.Address>{
+        val TAG = "Error finding the city"
+        val geocoder = Geocoder(this, Locale.getDefault())
+        var errorMessage = ""
+        var addresses: List<android.location.Address> = emptyList()
+
+        try {
+            addresses = geocoder.getFromLocationName(adress, 1)
+        } catch (ioException: IOException) {
+            errorMessage = "Service unavailable"
+            Log.e(TAG, errorMessage, ioException)
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            // Catch invalid latitude or longitude values.
+            errorMessage = "Invalid city"
+            Log.e(TAG, "$errorMessage. City = $adress", illegalArgumentException)
+        }
+
+        return addresses
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val paris = LatLng(48.8534, 2.3488)
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(paris, 6.0F))
+
         mMap.setOnMapClickListener {
             mMap.clear()
-            mMap.addMarker(MarkerOptions().position(it))
+            val newMarker = mMap.addMarker(MarkerOptions().position(it))
+            myMarkers.clear()
+            myMarkers.add(0, newMarker)
+        }
+
+        validateResponse.setOnClickListener {
+            handleValidateResponse(mMap)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-
         // Creating AlertDialog to prevent from quiting
 
         val alertDialog: AlertDialog? = this.let {
@@ -112,6 +183,10 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
         }
 
         return true
+    }
+
+    fun getDistanceFromLatLonInkm(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double{
+        return 200.0
     }
 
 }

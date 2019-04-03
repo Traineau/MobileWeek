@@ -6,10 +6,10 @@ class Product() {
     var name: String? = null
     var imageUrl: String? = null
     var brand: String? = null
-    var packerCode: Int? = null
+    var packerCode: String? = null
     var packerCity: String? = null
-    var lat: Int? = null
-    var long: Int? = null
+    var lat: Double? = null
+    var long: Double? = null
 
 }
 
