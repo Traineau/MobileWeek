@@ -21,46 +21,54 @@
             android:padding="18dp"
             android:elevation="16dp"
     />
-    <ImageView
-            android:src="@drawable/muffin_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-            android:text="Hello"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp" app:fontFamily="@font/fredoka_one" android:textSize="28sp"
-            android:textColor="@android:color/black" android:layout_marginTop="48dp"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-            android:text="Tara"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            app:fontFamily="@font/fredoka_one" android:textSize="28sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            android:layout_marginStart="8dp" android:layout_marginLeft="8dp" android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="32dp" android:layout_marginTop="48dp"
-            app:layout_constraintTop_toTopOf="parent"/>
     <ScrollView
             android:layout_width="395dp"
             android:layout_height="0dp" android:layout_marginBottom="58dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.0" android:background="@color/aliceBlue">
+            android:background="@color/aliceBlue" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" android:layout_marginLeft="8dp" android:layout_marginRight="8dp">
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/headerLayout">
+
+                <TextView
+                        android:text="Tara"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        app:fontFamily="@font/fredoka_one" android:textSize="28sp"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        android:layout_marginStart="8dp" android:layout_marginLeft="8dp" android:layout_marginEnd="32dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="32dp"
+                        android:layout_marginTop="48dp"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                        android:text="Hello"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView" app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="32dp"
+                        android:layout_marginStart="32dp" app:fontFamily="@font/fredoka_one" android:textSize="28sp"
+                        android:textColor="@android:color/black" android:layout_marginTop="48dp"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                <ImageView
+                        android:src="@drawable/muffin_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView2" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toTopOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
