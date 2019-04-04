@@ -24,7 +24,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
     }
