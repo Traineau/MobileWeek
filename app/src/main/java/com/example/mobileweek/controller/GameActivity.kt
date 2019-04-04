@@ -58,7 +58,10 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
         val brandName: TextView = findViewById(R.id.productBrand) as TextView
         val productImage = findViewById(R.id.productImage) as ImageView
 
-        product.code = 3564700014677
+        intent?.extras?.apply {
+            product.code = getLong("productCode")
+
+        }
 
         val request = Request.Builder()
             .url("https://fr.openfoodfacts.org/api/v0/produit/${product.code}.json")
@@ -72,11 +75,18 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
                 val Jobject = JSONObject(jsonData)
 
                 // Settings the product variables
-                product.name = Jobject.getJSONObject("product")?.getString("product_name")
-                product.imageUrl = Jobject.getJSONObject("product")?.getString("image_front_url")
-                product.brand = Jobject.getJSONObject("product")?.getJSONArray("brands_tags")?.getString(0)
-                product.packerCode = Jobject.getJSONObject("product")?.getString("emb_codes_tags")
-                product.packerCity = Jobject.getJSONObject("product")?.getJSONArray("cities_tags")?.getString(0)
+                product.name = Jobject.getJSONObject("product")?.getString("product_name")!!
+                product.imageUrl = Jobject.getJSONObject("product")?.getString("image_front_url")!!
+                product.brand = Jobject.getJSONObject("product")?.getJSONArray("brands_tags")?.getString(0)!!
+                product.packerCode = Jobject.getJSONObject("product")?.getString("emb_codes_tags")!!
+                val cities = Jobject.getJSONObject("product")?.getJSONArray("cities_tags")
+
+                if (cities?.length() != 0){
+                    product.packerCity = Jobject.getJSONObject("product")?.getJSONArray("cities_tags")?.getString(0)!!
+                }
+                else if(product.packerCity == null){
+                    product.packerCity = Jobject.getJSONObject("product")?.getString("manufacturing_places")!!
+                }
 
                 // Getting the product's city information with geocode
                 val adressInfo = getGeocodeInfo(product.packerCity)
@@ -90,9 +100,12 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
                     brandName.text = product.brand
 
                     // Using picasso to change the product image
-                    Picasso.get()
-                        .load(product.imageUrl)
-                        .into(productImage);
+                    if(product.imageUrl != null){
+                        Picasso.get()
+                            .load(product.imageUrl)
+                            .into(productImage);
+                    }
+
                 })
 
             }
@@ -147,6 +160,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
 
             estimationText.setText("Votre estimation est à $distance km du lieu d'origine du produit scanné !")
             winPointsText.text = "Vous avez gagné $points points !"
+            progressBar.progress = points/10
             responseLayout.visibility = View.VISIBLE
 
             validateResponse.text = "Terminé"

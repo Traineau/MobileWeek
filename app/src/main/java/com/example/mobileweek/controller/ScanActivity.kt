@@ -7,23 +7,43 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import com.example.mobileweek.R
+import me.dm7.barcodescanner.zxing.ZXingScannerView
+import com.google.zxing.Result
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 
-class ScanActivity : AppCompatActivity() {
+
+class ScanActivity : AppCompatActivity(){
+
+    private var mScannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scan)
+        mScannerView = ZXingScannerView(this)   // Programmatically initialize the scanner view
+        setContentView(mScannerView)
 
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
 
-        var playButton = findViewById(R.id.playButton) as ImageButton
+        IntentIntegrator(this@ScanActivity).initiateScan();
 
-        playButton.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(view: View): Unit {
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        var result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+        if(result != null){
+
+            if(result.contents != null){
                 val intent = Intent(this@ScanActivity, GameActivity::class.java);
+                intent.putExtra("productCode", result.contents.toLong())
                 startActivity(intent);
+            } else {
+                println("scan failed")
             }
-        })
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

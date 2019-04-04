@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.mobileweek">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
+            android:name=".controller.KtApplication"
+            android:hardwareAccelerated="true"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
@@ -25,7 +31,7 @@
         </activity>
 
         <activity android:name=".controller.ScanActivity"
-            android:parentActivityName="controller.MainActivity" android:label="@string/title_activity_scan">
+                  android:parentActivityName="controller.MainActivity" android:label="@string/title_activity_scan" android:hardwareAccelerated="true">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".controller.MainActivity"/>
@@ -39,9 +45,5 @@
         </activity>
 
     </application>
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
