@@ -2,7 +2,7 @@
     <string name="app_name">MobileWeek</string>
 
     <string name="title_activity_play">Page jouer</string>
-    <string name="title_activity_main">Page d\'accueil</string>
+    <string name="title_activity_main">Ton feed</string>
     <string name="title_activity_profil">Page profil</string>
     <string name="title_activity_scan">Page scan</string>
     <string name="title_activity_game">Place moi sur la carte!</string>
@@ -16,4 +16,13 @@
     <string name="dialog_title">Êtes-vous sûr de vouloir quitter la partie?</string>
     <string name="quit_dialog_ok">QUITTER</string>
     <string name="quit_dialog_cancel">ANNULER</string>
+    <string name="dialog_no_marker_message">Vous n\'avez pas placé de point sur la carte</string>
+    <string name="dialog_no_marker_title">Attention</string>
+
+
+    <string name="estimation_text">Votre estimation est à <b>2 000km</b> du lieu d\'origine du produit scanné !</string>
+    <string name="win_points">Vous avez gagné 200 points !</string>
+    <string name="valider">VALIDER</string>
+    <string name="product_image">Product image</string>
+    <string name="todo">TODO</string>
 </resources>
