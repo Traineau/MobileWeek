@@ -19,7 +19,7 @@
             app:srcCompat ="@drawable/ic_filter_center_focus_black_24dp"
             android:background="@drawable/rounded_button"
             android:padding="18dp"
-            android:elevation="8dp"
+            android:elevation="16dp"
     />
     <ImageView
             android:src="@drawable/muffin_home"
@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
     <ScrollView
             android:layout_width="395dp"
-            android:layout_height="0dp" android:layout_marginBottom="80dp"
+            android:layout_height="0dp" android:layout_marginBottom="58dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,9 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/home_layout_bg"
-                    android:elevation="8dp" android:id="@+id/firstItem" android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp" android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp">
+                    android:elevation="4dp" android:id="@+id/firstItem" android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp" android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp">
 
                 <TextView
                         android:text="Tony primeur vient d'ouvrir à Massy Palaiseau, soit à 10 minutes de chez toi. Rends leur visite !"
@@ -104,8 +104,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/home_layout_bg"
-                    android:elevation="8dp" android:id="@+id/secondItem"
-                    android:layout_margin="16dp">
+                    android:elevation="4dp" android:id="@+id/secondItem"
+                    android:layout_marginBottom="8dp" android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp" android:layout_marginTop="8dp">
 
                 <TextView
                         android:text="Tony primeur vient d'ouvrir à Massy Palaiseau, soit à 10 minutes de chez toi. Rends leur visite !"
@@ -142,7 +143,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/home_layout_bg"
-                    android:elevation="8dp" android:id="@+id/thirdItem" android:layout_margin="16dp">
+                    android:elevation="4dp" android:id="@+id/thirdItem" android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:layout_marginTop="8dp">
 
                 <TextView
                         android:text=" Tony primeur vient d'ouvrir à Massy Palaiseau, soit à 10 minutes de chez toi. Rends leur visite !"
@@ -179,7 +181,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/home_layout_bg"
-                    android:elevation="8dp" android:id="@+id/fourthItem" android:layout_margin="16dp">
+                    android:elevation="4dp" android:id="@+id/fourthItem" android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:layout_marginTop="8dp">
 
                 <TextView
                         android:text=" Tony primeur vient d'ouvrir à Massy Palaiseau, soit à 10 minutes de chez toi. Rends leur visite !"

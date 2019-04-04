@@ -117,7 +117,7 @@ class GameActivity : AppCompatActivity(), OnMapReadyCallback{
                 MarkerOptions()
                     .position(newMarkerCoordinate)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-            );
+            )
 
             // Putting marker in the list
             myMarkers.add(1, newMarker)
